@@ -1,11 +1,39 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatButton } from '@angular/material/button';
+import { Cliente } from '../cadastro/cliente';
+import { ClienteService } from '../cliente.service';
+
 
 @Component({
   selector: 'app-consulta',
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButton,
+    MatCardModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatTableModule,
+    MatInputModule
+],
   templateUrl: './consulta.component.html',
   styleUrl: './consulta.component.scss'
 })
 export class ConsultaComponent {
+  clientes: Cliente[] = []
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'dataNascimento', 'acoes'];
 
+  constructor(private service: ClienteService) { }
+
+  ngOnInit(): void {
+    this.clientes = this.service.obterStorage();
+    console.log(this.clientes);
+  }    
 }
