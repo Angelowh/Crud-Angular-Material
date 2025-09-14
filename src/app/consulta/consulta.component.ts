@@ -29,11 +29,15 @@ import { ClienteService } from '../cliente.service';
 export class ConsultaComponent {
   clientes: Cliente[] = []
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'dataNascimento', 'acoes'];
+  nomeBusca: string = ''
 
   constructor(private service: ClienteService) { }
 
   ngOnInit(): void {
-    this.clientes = this.service.obterStorage();
-    console.log(this.clientes);
-  }    
+    this.clientes = this.service.pesquisar('');
+  }
+  
+  pesquisarCliente(): void {
+    this.clientes = this.service.pesquisar(this.nomeBusca);
+  }
 }
