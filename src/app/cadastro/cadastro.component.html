@@ -41,11 +41,11 @@
                 </mat-card-content>
 
                 <mat-card-actions>
-                    <button mat-flat-button color="primary" type="submit">
+                    <button mat-flat-button color="primary" type="submit" *ngIf="!atualizar">
                         <mat-icon fontIcon="save"></mat-icon>
                         Salvar
                     </button>
-                    <button mat-flat-button color="primary">
+                    <button mat-flat-button color="primary" type="submit" *ngIf="atualizar">
                         <mat-icon fontIcon="refresh"></mat-icon>
                         Atualizar
                     </button>
