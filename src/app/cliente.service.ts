@@ -27,6 +27,16 @@ export class ClienteService {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage))
   }
 
+  deletar(id: string)
+  {
+    const storage = this.obterStorage()
+    const index = storage.findIndex( cliente => cliente.id === id)
+    if(index !== -1){
+      storage.splice(index, 1)
+      localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage))
+    }
+  }
+
   obterPorId(id: string): Cliente | undefined {
     const storage = this.obterStorage();
     return storage.find(cliente => cliente.id === id);
