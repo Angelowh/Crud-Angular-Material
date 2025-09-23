@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,6 +33,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 export class CadastroComponent implements OnInit {
   cliente: Cliente = Cliente.newCliente()
   atualizar: boolean = false
+  snackBar: MatSnackBar = inject(MatSnackBar)
   
   constructor(private service: ClienteService, 
               private route: ActivatedRoute,
@@ -56,8 +58,16 @@ export class CadastroComponent implements OnInit {
     if(!this.atualizar){
       this.service.salvar(this.cliente)
       this.cliente = Cliente.newCliente()
+      this.mostrarMensagem('Cliente salvo com sucesso!')
     }
-    this.service.atualizar(this.cliente)
-    this.router.navigate(['/consulta'])
+    else{
+      this.service.atualizar(this.cliente)
+      this.router.navigate(['/consulta'])
+      this.mostrarMensagem('Cliente atualizado com sucesso!')
+    }
+  }
+
+  mostrarMensagem(mensagem: string){
+    this.snackBar.open(mensagem, 'Ok', {duration: 5000, verticalPosition: 'bottom', horizontalPosition: 'center'})
   }
 }

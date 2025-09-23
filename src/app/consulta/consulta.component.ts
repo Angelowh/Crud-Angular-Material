@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -31,6 +32,7 @@ export class ConsultaComponent implements OnInit {
   clientes: Cliente[] = []
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'dataNascimento', 'acoes'];
   nomeBusca: string = ''
+  snackBar: MatSnackBar = inject(MatSnackBar)
 
   constructor(
     private service: ClienteService,
@@ -56,5 +58,6 @@ export class ConsultaComponent implements OnInit {
   deletar(id: string){
     this.service.deletar(id)
     this.clientes = this.service.pesquisar('');
+    this.snackBar.open('Cliente deletado com sucesso!', 'Ok', {duration: 5000, verticalPosition: 'bottom', horizontalPosition: 'center'})
   }
 }
