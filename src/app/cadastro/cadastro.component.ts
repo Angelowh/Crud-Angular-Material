@@ -14,7 +14,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { BrasilApiService } from '../brasil-api.service';
 import { Estado, Municipio } from '../brasilapi.model';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastro',
@@ -57,17 +57,28 @@ export class CadastroComponent implements OnInit {
           if(cliente){
             this.atualizar = true
             this.cliente = cliente
+            if(this.cliente.uf){
+              const event = { value: this.cliente.uf } as MatSelectChange
+              this.carregarMunicipios(event)
+            }
           }
         }
       })
-
-      this.carregarUfs()
+      this.carregarUfs()      
   }
 
   carregarUfs(){
     this.brasilApiService.carregarUfs().subscribe({
       next: listaEstados => this.estados = listaEstados,
-      error: err => console.log('Erro ao carregar UFs', err)
+      error: err => this.mostrarMensagem('Erro ao carregar UFs: ' + err)
+    })
+  }
+
+  carregarMunicipios(event: MatSelectChange){
+    const ufSelecionada = event.value
+    this.brasilApiService.carregarMunicipios(ufSelecionada).subscribe({
+      next: listaMunicipios => this.municipios = listaMunicipios,
+      error: err => this.mostrarMensagem('Erro ao carregar municípios: ' + err)
     })
   }
 

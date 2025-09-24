@@ -15,4 +15,9 @@ export class BrasilApiService {
     const path = '/ibge/uf/v1'
     return this.http.get<Estado[]>(this.baseUrl + path)
   }
+
+  carregarMunicipios(uf: string) : Observable<any[]> {
+    const path = `/ibge/municipios/v1/${uf}`
+    return this.http.get<any[]>(this.baseUrl + path)
+  }
 }
