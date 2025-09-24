@@ -10,8 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { BrasilApiService } from '../brasil-api.service';
+import { Estado, Municipio } from '../brasilapi.model';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,7 +27,9 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     MatIconModule,
     MatButtonModule,
     NgIf,
-    NgxMaskDirective
+    CommonModule,
+    NgxMaskDirective,
+    MatSelectModule
 ],
   providers: [provideNgxMask()],
   templateUrl: './cadastro.component.html',
@@ -34,10 +39,13 @@ export class CadastroComponent implements OnInit {
   cliente: Cliente = Cliente.newCliente()
   atualizar: boolean = false
   snackBar: MatSnackBar = inject(MatSnackBar)
+  estados : Estado[] = []
+  municipios : Municipio[] = []
   
   constructor(private service: ClienteService, 
               private route: ActivatedRoute,
-              private router: Router){}
+              private router: Router,
+              private brasilApiService: BrasilApiService){}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe( (query: any) => 
@@ -52,6 +60,15 @@ export class CadastroComponent implements OnInit {
           }
         }
       })
+
+      this.carregarUfs()
+  }
+
+  carregarUfs(){
+    this.brasilApiService.carregarUfs().subscribe({
+      next: listaEstados => this.estados = listaEstados,
+      error: err => console.log('Erro ao carregar UFs', err)
+    })
   }
 
   salvar(){
