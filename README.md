@@ -21,7 +21,7 @@ Finalizado ✅
 - Integração com a Brasil API para listar UFs e Municípios de acordo com a UF escolhida.
 
 
-## Tecnologias e Pré-requisitos
+## 🚧 Tecnologias e Pré-requisitos
 
 - Angular (com Angular Material): framework JavaScript para a construção da aplicação e sua interface.
 
@@ -30,7 +30,22 @@ Finalizado ✅
 - Angular CLI: ferramenta de linha de comando do Angular, necessária para servir o projeto localmente.
 
 
-## Instalação e Execução
+## 🔍 Prints das telas:
+
+### Listagem de Clientes:
+
+<img width="1902" height="712" alt="image" src="https://github.com/user-attachments/assets/2c42bb88-7a52-4b59-a40a-b91c4cdce682" />
+
+### Cadastro de Clientes:
+
+<img width="1918" height="718" alt="image" src="https://github.com/user-attachments/assets/812a8cbd-4d35-4753-ba81-782674af8ccc" />
+
+### Integração com a Brasil API
+
+![Gravando 2025-09-25 085639](https://github.com/user-attachments/assets/63368521-dc1d-48f5-96fe-50aaffdcfeac)
+
+
+## 📌 Instalação e Execução
 
 Para rodar o projeto localmente, siga estes passos:
 
