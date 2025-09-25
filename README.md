@@ -18,7 +18,7 @@ Finalizado ✅
 
 - Interface Angular Material: todos os elementos da UI (tabelas, botões, formulários, diálogos, etc.) são feitos com componentes do Angular Material, seguindo as diretrizes do Material Design.
 
-- Integração com a Brasil API para listar UFs e Municípios de acordo com a UF escolhida.
+- Integração com a [Brasil API](https://brasilapi.com.br/) para listar UFs e Municípios de acordo com a UF escolhida.
 
 
 ## 🚧 Tecnologias e Pré-requisitos
