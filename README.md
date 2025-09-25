@@ -3,10 +3,14 @@
 Projeto simples desenvolvido em Angular, criado não apenas para demonstrar implementação de Formulários, mas também como forma de **estudo prático** sobre como aplicar **estética** e **personalização visual** com Angular Material.
 
 
-## Status do Projeto:
+## 🚧 Status do Projeto:
 
 Finalizado ✅
 
+## 📖 Objetivos do projeto:
+
+- Aprender a estilizar interfaces com Angular Material
+- Praticar a criação de componentes reutilizáveis
 
 ## 🛠️ Funcionalidades Principais
 
